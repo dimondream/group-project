@@ -21,7 +21,6 @@ public class TetrisPiece implements Serializable {
     private int[] lowestYVals; //The lowestYVals array contains the lowest y value for each x in the body.
     private int width;
     private int height;
-    private TetrisPiece prev; // We'll use this to link each piece to its "prev" rotation.
     private TetrisPiece next; // We'll use this to link each piece to its "next" rotation.
     static private TetrisPiece[] pieces;	// array of rotations for this piece
 
@@ -186,21 +185,9 @@ public class TetrisPiece implements Serializable {
      * This only works on pieces set up by makeFastRotations(), and otherwise
      * just returns null.
      *
-     * @return the prev rotation of the given piece
-     */
-    public TetrisPiece prevRotation() {
-        return prev;
-    }
-
-    /**
-     * Returns a pre-computed piece that is 90 degrees counter-clockwise
-     * rotated from the receiver. Fast because the piece is pre-computed.
-     * This only works on pieces set up by makeFastRotations(), and otherwise
-     * just returns null.
-     *
      * @return the next rotation of the given piece
      */
-    public TetrisPiece nextRotation() {
+    public TetrisPiece fastRotation() {
         return next;
     }
 
@@ -223,22 +210,51 @@ public class TetrisPiece implements Serializable {
      */
     public static TetrisPiece makeFastRotations(TetrisPiece root) {
         TetrisPiece first = root;
-        Rotation cw = new Rotation(new Clockwise());
-        Rotation ccw = new Rotation(new CounterClockwise());
-        first.prev = cw.computeNextRotation(root);
-        first.next = ccw.computeNextRotation(root);
-
+        first.next = first.computeNextRotation();
         while (!first.next.equals(root)){
-            first.next.prev = first;
             first = first.next;
-            first.next = ccw.computeNextRotation(first);
+            first.next = first.computeNextRotation();
         }
         first.next = root;
-        root.prev = first;
-
         return root;
     }
 
+    /**
+     * Returns a new piece that is 90 degrees counter-clockwise
+     * rotated from the receiver.
+     *
+     * @return the next rotation of the given piece
+     */
+    public TetrisPiece computeNextRotation() {
+        int new_x;
+        int new_y;
+        int min = width;
+        ArrayList<Integer> store = new ArrayList<>();
+        for (TetrisPoint point : body){
+            new_x = -point.y;
+            new_y = point.x;
+
+            store.add(new_x);
+            store.add(new_y);
+            if (new_x < min){
+                min = new_x;
+            }
+        }
+        String points = "";
+        int s;
+        for (int i = 0; i < store.size(); i++){
+            if (i%2 == 0){
+                s = store.get(i) - min;
+                points += s;
+                points += " ";
+            } else {
+                points += store.get(i);
+                points += " ";
+            }
+        }
+        TetrisPiece next_piece = new TetrisPiece(points);
+        return next_piece;
+    }
     /**
      * Print the points within the piece
      *

@@ -223,17 +223,13 @@ public class TetrisView {
                 TetrisModel.MoveType verb = TetrisModel.MoveType.DOWN;
                 if (k.getCode() == KeyCode.DOWN){
                     verb = TetrisModel.MoveType.DROP;
-                } else if (k.getCode() == KeyCode.D) {
-                    verb = TetrisModel.MoveType.ROTATE_PREV;
                 } else if (k.getCode() == KeyCode.A) {
-                    verb = TetrisModel.MoveType.ROTATE_NEXT;
+                    verb = TetrisModel.MoveType.ROTATE;
                 } else if (k.getCode() == KeyCode.LEFT) {
                     verb = TetrisModel.MoveType.RIGHT;
                 }else if (k.getCode() == KeyCode.RIGHT) {
                     verb = TetrisModel.MoveType.LEFT;
-                }
-                model.modelTick(verb);
-                borderPane.requestFocus();
+                } model.modelTick(verb);
             }
         });
 
