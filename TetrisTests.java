@@ -26,7 +26,9 @@ public class TetrisTests {
         int counter = 0;
         while(counter < 4){
             TetrisPiece np = new TetrisPiece(target[counter]);
+            System.out.println(np);
             piece = piece.fastRotation();
+            System.out.println(piece);
             assertTrue(np.equals(piece), "Error when testing piece equality");
             counter++;
         }
@@ -90,21 +92,6 @@ public class TetrisTests {
     }
 
     @Test
-    void testPlacementHeight_1() {
-        TetrisPiece pieceA = new TetrisPiece(TetrisPiece.PYRAMID_STR);
-        TetrisPiece pieceB = new TetrisPiece(TetrisPiece.L2_STR);
-        TetrisPiece pieceC = new TetrisPiece(TetrisPiece.S2_STR);
-        TetrisBoard board = new TetrisBoard(10,24); board.commit();
-        int retval = board.placePiece(pieceA, 0,0); board.commit();
-        int x = board.placementHeight(pieceB, 0);
-        assertEquals(2,x);
-        retval = board.placePiece(pieceB, 0,2); board.commit();
-        x = board.placementHeight(pieceC, 0);
-        assertEquals(5,x);
-
-    }
-
-    @Test
     void testClearRows() {
         TetrisBoard board = new TetrisBoard(10,24); board.commit();
         TetrisPiece pieceA = new TetrisPiece(TetrisPiece.SQUARE_STR);
@@ -115,6 +102,7 @@ public class TetrisTests {
         retval = board.placePiece(pieceA, 4,0); board.commit();
         retval = board.placePiece(pieceA, 6,0); board.commit();
         retval = board.placePiece(pieceA, 8,0);
+        System.out.println(board);
 
         int rcleared = board.clearRows();
         assertEquals(2, rcleared);

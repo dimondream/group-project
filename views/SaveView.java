@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,11 +31,11 @@ public class SaveView {
     private Button saveBoardButton = new Button("Save board");
     TetrisView tetrisView;
 
-     /**
-         * Constructor
-         * 
-         * @param tetrisView master view
-         */
+    /**
+     * Constructor
+     *
+     * @param tetrisView master view
+     */
     public SaveView(TetrisView tetrisView) {
         this.tetrisView = tetrisView;
 

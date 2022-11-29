@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * Based on the Tetris assignment in the Nifty Assignments Database, authored by Nick Parlante
  */
-public class TetrisPoint implements Serializable, Comparable<TetrisPoint> {
+public class TetrisPoint implements Serializable, Comparable<model.TetrisPoint> {
     public int x;
     public int y;
 
@@ -27,7 +27,7 @@ public class TetrisPoint implements Serializable, Comparable<TetrisPoint> {
      *
      * @param point point to use to initialize
      */
-    public TetrisPoint(TetrisPoint point) {
+    public TetrisPoint(model.TetrisPoint point) {
         this.x = point.x;
         this.y = point.y;
     }
@@ -46,8 +46,8 @@ public class TetrisPoint implements Serializable, Comparable<TetrisPoint> {
      */
     public boolean equals(Object other) {
         if (this == other) return true;
-        if (!(other instanceof TetrisPoint)) return false;
-        TetrisPoint pt = (TetrisPoint)other;
+        if (!(other instanceof model.TetrisPoint)) return false;
+        model.TetrisPoint pt = (model.TetrisPoint)other;
         return(x==pt.x && y==pt.y);
     }
 
@@ -66,7 +66,7 @@ public class TetrisPoint implements Serializable, Comparable<TetrisPoint> {
      * @return 0 if equals, 1 if greater than, else -1
      */
     @Override
-    public int compareTo(TetrisPoint o) {
+    public int compareTo(model.TetrisPoint o) {
         if(o.x == this.x && o.y == this.y) return 0;
         if(this.x > o.x || this.x == o.x && this.y > o.y) return 1;
         return -1;
