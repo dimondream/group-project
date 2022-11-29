@@ -119,9 +119,11 @@ public class TetrisModel implements Serializable {
                 break;
 
             case SKIP: // skip the piece
-                newPiece = pickNextPiece();
+                newPiece = NextPieces.get(0);
                 newX = (board.getWidth() - newPiece.getWidth())/2;
                 newY = board.getHeight() - newPiece.getHeight();
+                NextPieces.remove(0);
+                NextPieces.add(pickNextPiece());
                 break;
 
             default: //doh!
