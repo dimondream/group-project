@@ -30,8 +30,7 @@ public class TetrisModel implements Serializable {
     protected TetrisPilot pilot;
 
     public enum MoveType {
-        ROTATE_NEXT,
-        ROTATE_PREV,
+        ROTATE,
         LEFT,
         RIGHT,
         DROP,
@@ -88,14 +87,8 @@ public class TetrisModel implements Serializable {
 
             case RIGHT: newX++; break; //move right
 
-            case ROTATE_PREV:
-                newPiece = newPiece.prevRotation();
-                newX = newX + (currentPiece.getWidth() - newPiece.getWidth())/2;
-                newY = newY + (currentPiece.getHeight() - newPiece.getHeight())/2;
-                break;
-
-            case ROTATE_NEXT: //rotate
-                newPiece = newPiece.nextRotation();
+            case ROTATE: //rotate
+                newPiece = newPiece.fastRotation();
                 newX = newX + (currentPiece.getWidth() - newPiece.getWidth())/2;
                 newY = newY + (currentPiece.getHeight() - newPiece.getHeight())/2;
                 break;
