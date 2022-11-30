@@ -12,5 +12,6 @@ public class Speed implements Visitable{
     public void setSpeed(double speed){
         this.speed =speed;
         view.timeline.setRate(speed);
+        System.out.println("the speed is now " + speed);
     }
 }
