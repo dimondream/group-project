@@ -1,12 +1,10 @@
 package views;
 
 import java.util.Scanner;
-import views.Visitable;
+
 
 public class Mode {
-    private String mode;
-    VisionAccessibilityVisitor vis;
-    TetrisView vw;
+
 
     public Mode(TetrisView view){
         Scanner obj = new Scanner(System.in);
@@ -32,5 +30,5 @@ public class Mode {
 
 
     }
-    //public void accept(Visitable visitable, TetrisView c){visitable.Accept(vis, c);}
+
 }
