@@ -58,20 +58,20 @@ public class TetrisPiece implements Serializable {
         height += 1;
 
         HashMap<Integer, Integer> lowest = new HashMap<>();
-        for (TetrisPoint point : body) {
-            if (!lowest.containsKey(point.x)) {
-                lowest.put(point.x, point.y);
-            } else if (point.y < lowest.get(point.x)){
-                lowest.remove(point.x);
-                lowest.put(point.x, point.y);
+            for (TetrisPoint point : body) {
+                if (!lowest.containsKey(point.x)) {
+                    lowest.put(point.x, point.y);
+                } else if (point.y < lowest.get(point.x)){
+                    lowest.remove(point.x);
+                    lowest.put(point.x, point.y);
+                }
             }
-        }
-        lowestYVals = new int[lowest.size()];
-        ArrayList<Integer> key = new ArrayList<>(lowest.keySet());
-        Collections.sort(key);
-        for (int i = 0; i < lowest.size(); i++){
-            lowestYVals[i] = lowest.get(key.get(i));
-        }
+            lowestYVals = new int[lowest.size()];
+            ArrayList<Integer> key = new ArrayList<>(lowest.keySet());
+            Collections.sort(key);
+            for (int i = 0; i < lowest.size(); i++){
+                lowestYVals[i] = lowest.get(key.get(i));
+            }
     }
 
     /**
