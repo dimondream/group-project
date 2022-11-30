@@ -1,5 +1,6 @@
 package views;
 
 public interface Visitable {
-    public void accept(Visitor visitor);
+    public void Accept(Visitor visitor);
+
 }

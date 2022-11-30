@@ -1,8 +1,17 @@
 package views;
 
+
 public class Font implements Visitable{
     private int size;
-    public void accept(Visitor visitor){visitor.visit(this);}
+    TetrisView view;
+    public Font(TetrisView vw){
+        view = vw;
+    }
+    @Override
+    public void Accept(Visitor visitor){visitor.visit(this); }
     public int getSize(){return size;}
-    public void setSize(int size){this.size =size;}
+    public void setSize(int size){
+        view.gameModeLabel.setFont(new javafx.scene.text.Font(size));
+        this.size=size;
+    }
 }

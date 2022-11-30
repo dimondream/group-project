@@ -1,5 +1,8 @@
 import model.TetrisModel;
+import views.Font;
+import views.Speed;
 import views.TetrisView;
+import views.Mode;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -31,6 +34,12 @@ public class TetrisApp extends Application {
     public void start(Stage primaryStage) {
         this.model = new TetrisModel(); // create a model
         this.view = new TetrisView(model, primaryStage); //tie the model to the view
+        Mode mod = new Mode(view);
+        //Speed spd = new Speed();
+
+        //Font ft = new Font();
+        //mod.accept(spd, view);
+        //mod.accept(ft, view);
         this.model.startGame(); //begin
     }
 
