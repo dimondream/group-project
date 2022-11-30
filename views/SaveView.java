@@ -15,9 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-/**
+/** 
  * Save File View
- *
+ * 
  * Based on the Tetris assignment in the Nifty Assignments Database, authored by Nick Parlante
  */
 public class SaveView {
@@ -31,11 +31,11 @@ public class SaveView {
     private Button saveBoardButton = new Button("Save board");
     TetrisView tetrisView;
 
-    /**
-     * Constructor
-     *
-     * @param tetrisView master view
-     */
+     /**
+         * Constructor
+         * 
+         * @param tetrisView master view
+         */
     public SaveView(TetrisView tetrisView) {
         this.tetrisView = tetrisView;
 
@@ -80,7 +80,7 @@ public class SaveView {
     }
 
     /**
-     * Save the board to a file
+     * Save the board to a file 
      */
     public void saveBoard() {
         String filename = saveFileNameTextField.getText();
