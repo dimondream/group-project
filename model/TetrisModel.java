@@ -85,10 +85,9 @@ public class TetrisModel implements Serializable {
 
     /**
      * Compute New Position of piece in play based on move type
-     *
      * @param verb type of move to account for
      */
-    public void computeNewPosition(model.TetrisModel.MoveType verb) {
+    public void computeNewPosition(MoveType verb) {
 
         // As a starting point, the new position is the same as the old
         newPiece = currentPiece;
@@ -172,11 +171,9 @@ public class TetrisModel implements Serializable {
 
     /**
      * Attempt to set the piece at a given board position
-     *
      * @param piece piece to place
      * @param x placement position, x
      * @param y placement position, y
-     *
      * @return integer defining if placement is OK or not (see Board.java)
      */
     public int setCurrent(TetrisPiece piece, int x, int y) {
@@ -209,7 +206,6 @@ public class TetrisModel implements Serializable {
 
     /**
      * Get width
-     *
      * @return width
      */
     public double getWidth() {
@@ -218,7 +214,6 @@ public class TetrisModel implements Serializable {
 
     /**
      * Get width
-     *
      * @return height (with buffer at top accounted for)
      */
     public double getHeight() {
@@ -227,7 +222,6 @@ public class TetrisModel implements Serializable {
 
     /**
      * Get width
-     *
      * @return score of game
      */
     public int getScore() {
@@ -236,7 +230,6 @@ public class TetrisModel implements Serializable {
 
     /**
      * Get width
-     *
      * @return number of pieces placed
      */
     public int getCount() {
@@ -262,7 +255,7 @@ public class TetrisModel implements Serializable {
      * Each tick is associated with a move of some kind!
      * Put the move in play by executing this.
      */
-    public void modelTick(model.TetrisModel.MoveType verb) {
+    public void modelTick(MoveType verb) {
 
         if (!gameOn) return;
 
@@ -291,7 +284,7 @@ public class TetrisModel implements Serializable {
      *
      * @param verb the type of move to execute
      */
-    private void executeMove(model.TetrisModel.MoveType verb) {
+    private void executeMove(MoveType verb) {
 
         if (currentPiece != null) {
             board.undo();	// remove the piece from its old position
