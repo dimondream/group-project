@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/** Represents a Board class for Tetris.
+/** Represents a Board class for Tetris.  
  * Based on the Tetris assignment in the Nifty Assignments Database, authored by Nick Parlante
  */
 public class TetrisBoard implements Serializable {
@@ -199,7 +199,7 @@ public class TetrisBoard implements Serializable {
     /**
      * Deletes rows that are filled all the way across, moving
      * things above down. Returns the number of rows cleared.
-     *
+     * 
      * @return number of rows cleared (useful for scoring)
      */
     public int clearRows() {
@@ -281,7 +281,7 @@ public class TetrisBoard implements Serializable {
 
     /**
      * Print the board
-     *
+     * 
      * @return a string representation of the board (useful for debugging)
      */
     public String toString() {
@@ -300,4 +300,3 @@ public class TetrisBoard implements Serializable {
 
 
 }
-
