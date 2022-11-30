@@ -1,6 +1,7 @@
 package model;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 /** Represents a Tetris Model for Tetris.  
@@ -35,8 +36,11 @@ public class TetrisModel implements Serializable {
         LEFT,
         RIGHT,
         DROP,
+        SKIP,
         DOWN
     }
+    // the place to save the next pieces
+    public ArrayList<TetrisPiece> NextPieces;
 
     /**
      * Constructor for a tetris model
@@ -55,12 +59,22 @@ public class TetrisModel implements Serializable {
      */
     public void startGame() { //start game
         random = new Random();
+        setupNextPieces();
         addNewPiece();
         gameOn = true;
         score = 0;
         count = 0;
     }
+    /**
+     * save next pieces as a list
+     */
+    public void setupNextPieces(){
+        NextPieces = new ArrayList<>();
+        NextPieces.add(pickNextPiece());
+        NextPieces.add(pickNextPiece());
+        NextPieces.add(pickNextPiece());
 
+    }
     /**
      * Board getter
      *
@@ -111,6 +125,14 @@ public class TetrisModel implements Serializable {
                 }
                 break;
 
+            case SKIP: // skip the piece
+                newPiece = NextPieces.get(0);
+                newX = (board.getWidth() - newPiece.getWidth())/2;
+                newY = board.getHeight() - newPiece.getHeight();
+                NextPieces.remove(0);
+                NextPieces.add(pickNextPiece());
+                break;
+
             default: //doh!
                 throw new RuntimeException("Bad movement!");
         }
@@ -128,7 +150,10 @@ public class TetrisModel implements Serializable {
         board.commit();
         currentPiece = null;
 
-        TetrisPiece piece = pickNextPiece();
+        TetrisPiece piece = NextPieces.get(0);
+        NextPieces.remove(piece);
+        NextPieces.add(pickNextPiece());
+
 
         // Center it up at the top
         int px = (board.getWidth() - piece.getWidth())/2;
