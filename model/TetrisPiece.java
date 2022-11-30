@@ -5,6 +5,7 @@ import java.util.*;
 
 /** An immutable representation of a tetris piece in a particular rotation.
  *  Each piece is defined by the blocks that make up its body.
+ *
  * Based on the Tetris assignment in the Nifty Assignments Database, authored by Nick Parlante
  */
 public class TetrisPiece implements Serializable {
@@ -20,8 +21,8 @@ public class TetrisPiece implements Serializable {
     private int[] lowestYVals; //The lowestYVals array contains the lowest y value for each x in the body.
     private int width;
     private int height;
-    private model.TetrisPiece next; // We'll use this to link each piece to its "next" rotation.
-    static private model.TetrisPiece[] pieces;	// array of rotations for this piece
+    private TetrisPiece next; // We'll use this to link each piece to its "next" rotation.
+    static private TetrisPiece[] pieces;	// array of rotations for this piece
 
 
     // String constants for the standard 7 tetris pieces
@@ -134,7 +135,7 @@ public class TetrisPiece implements Serializable {
      * @return true if objects are the same
      */
     public boolean equals(Object obj) {
-        model.TetrisPiece piece = (model.TetrisPiece) obj;
+        TetrisPiece piece = (TetrisPiece) obj;
         List points = List.of(piece.body);
         for (TetrisPoint point : body){
             if (!points.contains(point)){
@@ -156,26 +157,26 @@ public class TetrisPiece implements Serializable {
      *
      * @return a list of all the rotations for all the given pieces.
      */
-    public static model.TetrisPiece[] getPieces() {
+    public static TetrisPiece[] getPieces() {
         // lazy evaluation -- create static array only if needed
-        if (model.TetrisPiece.pieces==null) {
+        if (TetrisPiece.pieces==null) {
             // use makeFastRotations() to compute all the rotations for each piece
             try {
-                model.TetrisPiece.pieces = new model.TetrisPiece[]{
-                        makeFastRotations(new model.TetrisPiece(STICK_STR)),
-                        makeFastRotations(new model.TetrisPiece(L1_STR)),
-                        makeFastRotations(new model.TetrisPiece(L2_STR)),
-                        makeFastRotations(new model.TetrisPiece(S1_STR)),
-                        makeFastRotations(new model.TetrisPiece(S2_STR)),
-                        makeFastRotations(new model.TetrisPiece(SQUARE_STR)),
-                        makeFastRotations(new model.TetrisPiece(PYRAMID_STR)),
+                TetrisPiece.pieces = new TetrisPiece[]{
+                        makeFastRotations(new TetrisPiece(STICK_STR)),
+                        makeFastRotations(new TetrisPiece(L1_STR)),
+                        makeFastRotations(new TetrisPiece(L2_STR)),
+                        makeFastRotations(new TetrisPiece(S1_STR)),
+                        makeFastRotations(new TetrisPiece(S2_STR)),
+                        makeFastRotations(new TetrisPiece(SQUARE_STR)),
+                        makeFastRotations(new TetrisPiece(PYRAMID_STR)),
                 };
             } catch (UnsupportedOperationException e) {
                 System.out.println("You must implement makeFastRotations!");
                 System.exit(1);
             }
         }
-        return model.TetrisPiece.pieces;
+        return TetrisPiece.pieces;
     }
 
     /**
@@ -186,7 +187,7 @@ public class TetrisPiece implements Serializable {
      *
      * @return the next rotation of the given piece
      */
-    public model.TetrisPiece fastRotation() {
+    public TetrisPiece fastRotation() {
         return next;
     }
 
@@ -207,8 +208,8 @@ public class TetrisPiece implements Serializable {
      *
      * @return a piece that is a linked list containing all rotations for the piece
      */
-    public static model.TetrisPiece makeFastRotations(model.TetrisPiece root) {
-        model.TetrisPiece first = root;
+    public static TetrisPiece makeFastRotations(TetrisPiece root) {
+        TetrisPiece first = root;
         first.next = first.computeNextRotation();
         while (!first.next.equals(root)){
             first = first.next;
@@ -224,7 +225,7 @@ public class TetrisPiece implements Serializable {
      *
      * @return the next rotation of the given piece
      */
-    public model.TetrisPiece computeNextRotation() {
+    public TetrisPiece computeNextRotation() {
         int new_x;
         int new_y;
         int min = width;
@@ -251,7 +252,7 @@ public class TetrisPiece implements Serializable {
                 points += " ";
             }
         }
-        model.TetrisPiece next_piece = new model.TetrisPiece(points);
+        TetrisPiece next_piece = new TetrisPiece(points);
         return next_piece;
     }
     /**
