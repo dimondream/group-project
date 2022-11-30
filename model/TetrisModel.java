@@ -227,7 +227,7 @@ public class TetrisModel implements Serializable {
 
     /**
      * Get width
-     *  
+     * 
      * @return score of game
      */
     public int getScore() {
@@ -288,7 +288,7 @@ public class TetrisModel implements Serializable {
      * as a result of the move, the lines will be cleared from the board,
      * and the board will be updated.  Scores will be added to the player's
      * total based on the number of rows cleared.
-     *  
+     * 
      * @param verb the type of move to execute
      */
     private void executeMove(MoveType verb) {
