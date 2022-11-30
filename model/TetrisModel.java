@@ -35,8 +35,8 @@ public class TetrisModel implements Serializable {
         LEFT,
         RIGHT,
         DROP,
-        DOWN,
-        SKIP
+        SKIP,
+        DOWN
     }
     // the place to save the next pieces
     public ArrayList<TetrisPiece> NextPieces;
@@ -85,7 +85,7 @@ public class TetrisModel implements Serializable {
 
     /**
      * Compute New Position of piece in play based on move type
-     *
+     * 
      * @param verb type of move to account for
      */
     public void computeNewPosition(MoveType verb) {
@@ -172,11 +172,11 @@ public class TetrisModel implements Serializable {
 
     /**
      * Attempt to set the piece at a given board position
-     *
+     * 
      * @param piece piece to place
      * @param x placement position, x
      * @param y placement position, y
-     *
+     * 
      * @return integer defining if placement is OK or not (see Board.java)
      */
     public int setCurrent(TetrisPiece piece, int x, int y) {
@@ -209,8 +209,8 @@ public class TetrisModel implements Serializable {
 
     /**
      * Get width
-     *
-     * @return width
+     * 
+     * @return width 
      */
     public double getWidth() {
         return WIDTH;
@@ -218,8 +218,8 @@ public class TetrisModel implements Serializable {
 
     /**
      * Get width
-     *
-     * @return height (with buffer at top accounted for)
+     * 
+     * @return height (with buffer at top accounted for) 
      */
     public double getHeight() {
         return HEIGHT + BUFFERZONE;
@@ -227,7 +227,7 @@ public class TetrisModel implements Serializable {
 
     /**
      * Get width
-     *
+     *  
      * @return score of game
      */
     public int getScore() {
@@ -236,7 +236,7 @@ public class TetrisModel implements Serializable {
 
     /**
      * Get width
-     *
+     * 
      * @return number of pieces placed
      */
     public int getCount() {
@@ -309,7 +309,7 @@ public class TetrisModel implements Serializable {
             if (currentPiece != null) board.placePiece(currentPiece, currentX, currentY);
         }
 
-        if (failed && verb== MoveType.DOWN){	// if it's out of bounds due to falling
+        if (failed && verb==MoveType.DOWN){	// if it's out of bounds due to falling
             int cleared = board.clearRows();
             if (cleared > 0) {
                 // scores go up by 5, 10, 20, 40 as more rows are cleared
