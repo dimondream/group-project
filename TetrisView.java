@@ -57,6 +57,7 @@ public class TetrisView {
     public TetrisView(TetrisModel model, Stage stage) {
         this.model = model;
         this.stage = stage;
+
         initUI();
     }
 
@@ -157,13 +158,18 @@ public class TetrisView {
         //timeline structures the animation, and speed between application "ticks"
         timeline = new Timeline(new KeyFrame(Duration.seconds(0.25), e -> updateBoard()));
         timeline.setCycleCount(Timeline.INDEFINITE);
+        new Mode(this);//test
         timeline.play();
+
 
         //configure this such that you start a new game when the user hits the newButton
         //Make sure to return the focus to the borderPane once you're done!
         newButton.setOnAction(e -> {
             model.newGame();
+            timeline.stop();
             paused = false;
+            new Mode(this); //test
+            timeline.play();
             borderPane.requestFocus();
         });
 
@@ -230,6 +236,7 @@ public class TetrisView {
                 }else if (k.getCode() == KeyCode.RIGHT) {
                     verb = TetrisModel.MoveType.LEFT;
                 } model.modelTick(verb);
+                borderPane.requestFocus();
             }
         });
 
@@ -241,6 +248,7 @@ public class TetrisView {
         var scene = new Scene(borderPane, 800, 800);
         this.stage.setScene(scene);
         this.stage.show();
+
     }
 
     /**
