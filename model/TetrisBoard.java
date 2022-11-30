@@ -2,9 +2,12 @@
 package model;
 
 import java.io.*;
-import java.util.Arrays;
+import java.text.Collator;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Collectors;
 
-/** Represents a Board class for Tetris.  
+/** Represents a Board class for Tetris.
  * Based on the Tetris assignment in the Nifty Assignments Database, authored by Nick Parlante
  */
 public class TetrisBoard implements Serializable {
@@ -297,5 +300,4 @@ public class TetrisBoard implements Serializable {
 
 
 }
-
 
