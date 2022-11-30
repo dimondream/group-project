@@ -1,16 +1,14 @@
 package views;
 
-import model.TetrisModel;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.TetrisModel;
+import model.TetrisPiece;
+import model.TetrisPoint;
 
 
 /**
@@ -250,10 +251,11 @@ public class TetrisView {
                     verb = TetrisModel.MoveType.RIGHT;
                 }else if (k.getCode() == KeyCode.RIGHT) {
                     verb = TetrisModel.MoveType.LEFT;
-                } else if (k.getCode() == KeyCode.D) {
+                } else if (k.getCode() == KeyCode.S) {
                     verb = TetrisModel.MoveType.SKIP;
                 }
                 model.modelTick(verb);
+                borderPane.requestFocus();
             }
         });
 
